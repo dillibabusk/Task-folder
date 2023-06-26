@@ -1,0 +1,455 @@
+Task:
+1) Do the below programs in anonymous function & IIFE
+
+a)Print odd numbers in an array
+b)Convert all the strings to title caps in a string array
+c)Sum of all numbers in an array
+d)Return all the prime numbers in an array
+e)Return all the palindromes in an array
+f)Return median of two sorted arrays of same size
+g)Remove duplicates from an array
+h)Rotate an array by k times
+
+
+a. Print odd numbers in an array
+
+// Doing with Anonymous Function:
+Code:
+
+var a = function (array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 == 1) {
+            console.log(array[i])
+        }
+    }
+};
+
+a([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+Description: 
+In the above code, the anonymous function is stored in a variable 'a'. We will pass an array as an argument while calling the variable a and it will print all the odd numbers present in an array. We have used a for loop to iterate over all the elements in the array and it will check through a if condition whether our array element%2 == 1 (to check if it is even numer). If it is, then it's will print that element.
+
+// Doing with IIFE:
+Code:
+
+ (function (array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 == 1) {
+            console.log(array[i])
+        }
+    }
+})([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+Description: 
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+b. Convert all the strings to title caps in a string array
+
+// Doing with Anonymous Function:
+Code:
+
+var titleCase = function (str) {
+    if ((str === null) || (str === ''))
+        return false;
+    else
+        str = str.toString();
+
+    console.log(str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() +
+            txt.substr(1).toLowerCase();
+    }))
+};
+titleCase('hello world')
+
+Description: 
+In the above function we will pass a string sentence as an argument and that sentence will be converted into title case. We have made the use of a RegEx (Regular Expression). the RegEx will take the string. Find all the words present in that string and replace the string according to the criteria we have given inside another function. This inside function will take the first character of the string and convert it to uppercase and take the rest of the string and convert it to lowercase. Whatever output is returned by the inside function will get replaced by the original string with the help of str.replace() method.
+
+// Doing with IIFE:
+Code:
+
+(function (str) {
+    if ((str === null) || (str === ''))
+        return false;
+    else
+        str = str.toString();
+
+    console.log(str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() +
+            txt.substr(1).toLowerCase();
+    }))
+
+})('hello world')
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+c. Sum of all numbers in an array
+
+// Doing with Anonymous Function
+Code:
+
+ var a = function (array) {
+    let sum = 0;
+    for (element in array) {
+        sum += array[element]
+    }
+    console.log(sum)
+}
+a([20, 30, 40, 50, 60, 70, 80]) 
+
+Description:
+In the above function which will take an array, we have initialized a variable 'sum' which and set it's values to zero. then we have used a for loop which will iterate over all the elements in the array and keep adding those values to the sum variable one by one. When for loop is finished it will have totalled all the values of the array and stored it in sum variable. The sum variable then can be printed to shwo the result.
+
+//Doing with IIFE
+Code:
+
+(function (array) {
+    let sum = 0;
+    for (element in array) {
+        sum += array[element]
+    }
+    console.log(sum)
+
+})([20, 30, 40, 50, 60, 70, 80])
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+d. Return all the prime numbers in an array
+
+//Doing with Anonymous Function
+Code:
+
+var a = function (array) {
+    var arr = []
+    var number = 0
+    for (let i = 0; i < array.length; i++) {
+        number = array[i]
+
+        function isPrime(n) {
+            // Corner case
+            if (n <= 1)
+                return false;
+
+            // Check from 2 to n-1
+            for (let i = 2; i < n; i++)
+                if (n % i == 0)
+                    return false;
+
+            return true;
+        }
+        if (isPrime(number) === true) {
+            arr.push(number)
+        }
+    }
+    console.log(arr)
+}
+
+a([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+
+Description: 
+The above function which takes an array of number and gices all the prime numbers present in that array. We have initialized an empty array 'arr' in which all the prime numbers will be pushed. We have taken a for loop which will iterate through all the elements in the array and it will check if the element is prime or not with the help of isPrime() function we have defined inside the for loop. The isPrime() function will check using if condition the foolowing condition (n<=1) & (n%i==0). If 'n' is less than or equalt to 1 then false will be returned. If 'n' is greater than 1 then the function will -> iterate from 2 to 'n' and find if 'n' is divisible by any number between 2 to 'n'. If the number is not divisible by any other number but the number 'n' itself that means it is prime and true will be returned for that number and that number will be pushed to our array 'arr'. 
+
+// Doing with IIFE
+Code:
+
+(function (array) {
+    var arr = []
+    var number = 0
+    for (let i = 0; i < array.length; i++) {
+        number = array[i]
+
+        function isPrime(n) {
+            // Corner case
+            if (n <= 1)
+                return false;
+
+            // Check from 2 to n-1
+            for (let i = 2; i < n; i++)
+                if (n % i == 0)
+                    return false;
+
+            return true;
+        }
+        if (isPrime(number) === true) {
+            arr.push(number)
+        }
+    }
+    console.log(arr)
+
+})([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+e. Return all the palindromes in an array
+
+//Doing with Anonymous Function
+Code:
+
+var a = function (arr) {
+    var answer = []
+    var string = ""
+    for (item in arr) {
+        string = arr[item]
+
+        function isPalindrome(str) {
+            str = str.toLowerCase()
+            if (str.length % 2 === 0) {
+                length = Math.round(str.length / 2)
+                let halfstring = ""
+                for (let i = 0; i < length; i++) {
+                    halfstring += str.charAt(i)
+                }
+
+                let remainingstring = ""
+                for (let i = length; i < str.length; i++) {
+                    remainingstring += str.charAt(i)
+                }
+
+                reverse = remainingstring.split("").reverse().join("")
+
+                if (halfstring === reverse) {
+                    return true
+                }
+                else {
+                    return false
+                }
+
+            }
+            else {
+                length = Math.round(str.length / 2)
+                let halfstring = ""
+                for (let i = 0; i < length; i++) {
+                    halfstring += str.charAt(i)
+                }
+
+                let remainingstring = ""
+                for (let i = length - 1; i < str.length; i++) {
+                    remainingstring += str.charAt(i)
+                }
+
+                reverse = remainingstring.split("").reverse().join("")
+
+                if (halfstring === reverse) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        }
+
+        if (isPalindrome(string) === true) {
+            answer.push(string.toLowerCase())
+        }
+    }
+    console.log(answer)
+}
+a(["redivider", "deified", "civic", "RADAR", "LeVel", "music", "stars", "idea", "football", "mobile"])
+
+Description:
+The technique we have used in above code to find if a word is palindrome or not is : take the characters of half of the string and compare it with the reverse of the remaining half of the string. if both are same then the string is palindrome. The code is distributed in two parts according to the length of the word. If the length of the word is even then it will iterate to half the length of the string and store it in 'halfstring' variable. Then it will iterate from the remaining half of the string to the end of the string and store it in 'remainingstring' variable. then it will reverse the 'remainingstring' variable and compare it with the halfstring variable. If bot are exact matches then it will return true. Which means the string is Palindrome. Then that string will be pushed to 'answer' array. The same process will be repeated if the length of the string is odd but then the iteration for remaining string will start from (half the length of string -1) to the end of the string.
+
+//Doing with IIFE
+Code:
+
+ (function (arr) {
+    var answer = []
+    var string = ""
+    for (item in arr) {
+        string = arr[item]
+
+        function isPalindrome(str) {
+            str = str.toLowerCase()
+            if (str.length % 2 === 0) {
+                length = Math.round(str.length / 2)
+                let halfstring = ""
+                for (let i = 0; i < length; i++) {
+                    halfstring += str.charAt(i)
+                }
+
+                let remainingstring = ""
+                for (let i = length; i < str.length; i++) {
+                    remainingstring += str.charAt(i)
+                }
+
+                reverse = remainingstring.split("").reverse().join("")
+
+                if (halfstring === reverse) {
+                    return true
+                }
+                else {
+                    return false
+                }
+
+            }
+            else {
+                length = Math.round(str.length / 2)
+                let halfstring = ""
+                for (let i = 0; i < length; i++) {
+                    halfstring += str.charAt(i)
+                }
+
+                let remainingstring = ""
+                for (let i = length - 1; i < str.length; i++) {
+                    remainingstring += str.charAt(i)
+                }
+
+                reverse = remainingstring.split("").reverse().join("")
+
+                if (halfstring === reverse) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        }
+
+        if (isPalindrome(string) === true) {
+            answer.push(string.toLowerCase())
+        }
+    }
+    console.log(answer)
+
+})(["redivider", "deified", "civic", "RADAR", "LeVel", "music", "stars", "idea", "football", "mobile"])
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+f. Median of 2 sorted arrays
+
+//Doing with Anonymous Function
+Code:
+
+var a = function (array1, array2) {
+    let arr = [...array1, ...array2]
+    arr.sort(function (a, b) { return a - b });
+    console.log(arr)
+    if (arr.length % 2 === 0) {
+        let median = (arr[(arr.length / 2) - 1] + arr[(arr.length / 2)]) / 2
+        console.log(median)
+    }
+    else {
+        let median = arr[arr.length / 2]
+        console.log(median)
+    }
+}
+a([1, 12, 15, 26], [2, 13, 17, 30])
+
+Description:
+In the above code we need to find the median of two arrays of same size. For this the two arrays will be combined with the spread operator. The to find the median we will take the mid element of the array and that will be our median. If the size of the combined array is even then we have to take the middle two element , sum those two and divide it by 2. The result will be our median. The formula to find the middle two elements and getting it's average is : (arr[(arr.length / 2) - 1] + arr[(arr.length / 2)]). / 2.
+
+//Doing with IIFE
+Code:
+
+(function (array1, array2) {
+    let arr = [...array1, ...array2]
+    arr.sort(function (a, b) { return a - b });
+    console.log(arr)
+    if (arr.length % 2 === 0) {
+        let median = (arr[(arr.length / 2) - 1] + arr[(arr.length / 2)]) / 2
+        console.log(median)
+    }
+    else {
+        let median = arr[arr.length / 2]
+        console.log(median)
+    }
+
+})([1, 12, 15, 26], [2, 13, 17, 30])
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+g. Remove duplicates from an array
+
+//Doing with Anonymous Function
+Code:
+
+ var a = function (array) {
+   const mySet1 = new Set()
+   for (element in array) {
+       mySet1.add(array[element])
+   }
+   console.log(mySet1)
+}
+a([11, 12, 12, 12, 13, 13, 13, 15, 16, 16, 16, 17, 18, 19])
+
+Description:
+In the above function we are initializing a set. A set is an array which will never include more than one unique values. So if we try to add repeated values or string to the set, it will exclude all the repeated values and give an array of all unique elements. 
+
+
+//Doing with IIFE
+Code:
+
+ (function (array) {
+    const mySet1 = new Set()
+    for (element in array) {
+        mySet1.add(array[element])
+    }
+    console.log(mySet1)
+
+})([11, 12, 12, 12, 13, 13, 13, 15, 16, 16, 16, 17, 18, 19])
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
+
+
+
+
+h. Rotate an array by k times
+
+//Doing with Anonymous Function
+Code:
+
+ var a = function (array1, k) {
+    let rotatedarray = []
+
+    for (let i = 0; i < array1.length; i++) {
+        let newIndex = (i + k) % array1.length
+        rotatedarray[newIndex] = array1[i]
+    }
+    console.log(rotatedarray)
+}
+a([11, 12, 13, 14, 15, 16, 17], 2)
+
+Description:
+In the above function we have initialized an empty array which give us the rotate array. To rotate the array we have to define the index value after the number of rotations to each element of the array. For E.g., here the index value of '11' is 0. After two rotations to the right it's index value will be 2. Now this new index value needs to be assigned to '11'. Similarly we have to do this for all the elements of our array. For this we have used a for loop. the new index for each element will be defined through the formula ((i+k) % length of the array). This formula will calculate the index value after rotating the array 'k' times and assign that index value to the respective array element.
+
+
+//Doing with IIFE
+Code:
+
+(function (array1, k) {
+    let rotatedarray = []
+
+    for (let i = 0; i < array1.length; i++) {
+        let newIndex = (i + k) % array1.length
+        rotatedarray[newIndex] = array1[i]
+    }
+    console.log(rotatedarray)
+
+
+})([11, 12, 13, 14, 15, 16, 17], 2) 
+
+Description:
+The logic for the code is same as the anonymous function above, except that it is an Immediately invoked function. So here, we don't have to call the function with the help of variable 'a'.
